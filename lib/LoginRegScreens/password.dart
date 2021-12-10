@@ -45,24 +45,6 @@ class _PasswordState extends State<PasswordScreen> {
             Padding(
                 padding:
                     const EdgeInsets.only(right: 30.0, left: 30.0, top: 40.0),
-                child: TextField(
-                  textAlign: TextAlign.center,
-                  style: TextStyle(color: Colors.orangeAccent),
-                  cursorColor: Colors.orangeAccent,
-                  keyboardType: TextInputType.text,
-                  controller: _phoneController,
-                  enabled: false,
-                  decoration: InputDecoration(
-                      enabledBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(color: Colors.orangeAccent)),
-                      focusedBorder: UnderlineInputBorder(
-                        borderSide:
-                            BorderSide(color: Colors.deepOrangeAccent.shade100),
-                      )),
-                )),
-            Padding(
-                padding:
-                    const EdgeInsets.only(right: 30.0, left: 30.0, top: 40.0),
                 child: GenderPickerWithImage(
                   onChanged: (Gender? gender) {
                     gendController = gender.toString().substring(7);
