@@ -5,7 +5,8 @@ import 'package:hairobarber/LoginRegScreens/loginpage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../home.dart';
 
-DatabaseReference dbRef = FirebaseDatabase.instance.reference().child("users");
+DatabaseReference dbRef =
+    FirebaseDatabase.instance.reference().child("barbers");
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();

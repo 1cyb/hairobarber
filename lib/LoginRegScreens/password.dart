@@ -159,7 +159,10 @@ class _PasswordState extends State<PasswordScreen> {
                     "name": _nameController.text,
                     "gender": gendController,
                   };
-                  dbRef.child(widget.uid).set(userDetails).then((value) async {
+                  dbRef
+                      .child(widget.phone)
+                      .set(userDetails)
+                      .then((value) async {
                     SharedPreferences prefs =
                         await SharedPreferences.getInstance();
                     prefs.setString('uid', widget.uid);
