@@ -5,8 +5,10 @@ import 'package:hairobarber/LoginRegScreens/loginpage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../home.dart';
 
+DatabaseReference dbRef = FirebaseDatabase.instance.reference().child("users");
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   SharedPreferences prefs = await SharedPreferences.getInstance();
   var uid = prefs.getString('uid');
   if (uid != null) {
@@ -24,5 +26,3 @@ Future<void> main() async {
     ));
   }
 }
-
-DatabaseReference dbRef = FirebaseDatabase.instance.reference().child("users");
