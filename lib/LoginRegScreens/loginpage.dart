@@ -15,6 +15,8 @@ class _LoginScreenState extends State<LoginScreen> {
   TextEditingController _controller = TextEditingController();
   TextEditingController _passwordcontroller = TextEditingController();
   final GlobalKey<ScaffoldState> _scaffoldkey = GlobalKey<ScaffoldState>();
+  var _passwordVisible;
+  var _obscureText;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -84,12 +86,26 @@ class _LoginScreenState extends State<LoginScreen> {
                   cursorColor: Colors.orangeAccent,
                   keyboardType: TextInputType.text,
                   controller: _passwordcontroller,
-                  obscureText: true,
+                  obscureText: _obscureText,
                   maxLength: 15,
                   decoration: InputDecoration(
                       prefixIcon: Icon(
                         Icons.vpn_key_outlined,
                         color: Colors.deepOrangeAccent.shade100,
+                      ),
+                      suffixIcon: IconButton(
+                        icon: Icon(
+                          _passwordVisible
+                              ? Icons.visibility
+                              : Icons.visibility_off,
+                          color: Colors.deepOrangeAccent.shade100,
+                        ),
+                        onPressed: () {
+                          setState(() {
+                            _passwordVisible = !_passwordVisible;
+                            _obscureText = !_obscureText;
+                          });
+                        },
                       ),
                       hintText: 'Password',
                       hintStyle: TextStyle(color: Colors.white38),
@@ -182,6 +198,8 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   void initState() {
+    _passwordVisible = false;
+    _obscureText = true;
     super.initState();
     WidgetsBinding.instance!.addPostFrameCallback((timeStamp) async {
       SharedPreferences prefs = await SharedPreferences.getInstance();

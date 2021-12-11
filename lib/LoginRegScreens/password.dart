@@ -16,10 +16,11 @@ class PasswordScreen extends StatefulWidget {
 
 class _PasswordState extends State<PasswordScreen> {
   final GlobalKey<ScaffoldState> _scaffoldkey = GlobalKey<ScaffoldState>();
-
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _phoneController = TextEditingController();
+  var _passwordVisible;
+  var _obscureText;
 
   @override
   Widget build(BuildContext context) {
@@ -97,12 +98,26 @@ class _PasswordState extends State<PasswordScreen> {
                 cursorColor: Colors.orangeAccent,
                 keyboardType: TextInputType.text,
                 controller: _passwordController,
-                obscureText: true,
+                obscureText: _obscureText,
                 maxLength: 15,
                 decoration: InputDecoration(
                     prefixIcon: Icon(
                       Icons.vpn_key_outlined,
                       color: Colors.deepOrangeAccent.shade100,
+                    ),
+                    suffixIcon: IconButton(
+                      icon: Icon(
+                        _passwordVisible
+                            ? Icons.visibility
+                            : Icons.visibility_off,
+                        color: Colors.deepOrangeAccent.shade100,
+                      ),
+                      onPressed: () {
+                        setState(() {
+                          _passwordVisible = !_passwordVisible;
+                          _obscureText = !_obscureText;
+                        });
+                      },
                     ),
                     hintText: 'Password',
                     hintStyle: TextStyle(color: Colors.white38),
@@ -172,7 +187,8 @@ class _PasswordState extends State<PasswordScreen> {
 
   @override
   void initState() {
-    // TODO: implement initState
+    _passwordVisible = false;
+    _obscureText = true;
     super.initState();
   }
 }
